@@ -1,0 +1,845 @@
+# Smart Crop Advisory System - Product Requirements Document
+
+---
+
+## Project Information
+
+### Project Title
+
+**Krishi Mitra - Smart Crop Advisory System**
+
+---
+
+### Project Description
+
+**Short Description:**
+Krishi Mitra is an AI-powered, multilingual mobile application that provides small and marginal farmers with real-time, personalized crop advisory services, enabling data-driven decisions for better yields and sustainable farming practices.
+
+**Long Description:**
+
+**Problem Context:**
+A majority of India's 86% small and marginal farmers rely on traditional knowledge, guesswork, or unreliable advice from local shopkeepers for critical farming decisions. This lack of access to scientific, personalized agricultural guidance results in poor crop yields, excessive input costs, and environmental degradation from chemical overuse. Language barriers, low digital literacy, and absence of localized tools compound these challenges, leaving farmers vulnerable to crop failures and economic distress.
+
+**Proposed Solution:**
+Krishi Mitra (Friend of Farmers) is an Android-based mobile application designed specifically for farmers with low digital literacy. The app provides intelligent, location-aware agricultural advisory through a simple, voice-enabled interface. By leveraging offline-first architecture, the system ensures accessibility even in areas with poor connectivity. Farmers can receive personalized recommendations for crop selection, soil health management, fertilizer application, and pest/disease identification through simple image uploads.
+
+**Key Differentiators:**
+- **Voice-First Design:** Complete voice navigation for low-literate users
+- **Offline Capability:** Core features work without internet connectivity
+- **Multilingual Support:** Native language support for major Indian languages
+- **Image-Based Diagnosis:** AI-powered pest and disease detection from photos
+- **Hyper-Local Intelligence:** Weather and soil recommendations based on exact location
+- **Government Credibility:** Backed by Department of Higher Education, Government of Punjab
+
+**Expected Impact:**
+By providing scientific, accessible agricultural guidance, Krishi Mitra aims to increase crop yields by 20-30%, reduce input costs by 15-25%, and promote sustainable farming practices. The system will empower over 10,000 farmers in the pilot phase with actionable insights in their native language, reducing dependency on unreliable third-party advice and improving rural livelihoods.
+
+**Target Market:**
+Small and marginal farmers in Punjab and surrounding states, agricultural extension officers, government agriculture departments, and NGOs working in rural development.
+
+---
+
+### Learning Objectives
+
+**Primary Learning Outcomes:**
+
+- **Mobile-First Development:** Building offline-first Android applications with React Native and local storage
+- **AI/ML Integration:** Implementing image recognition for crop disease detection using TensorFlow Lite
+- **Voice Interface Design:** Creating accessible voice-based navigation for low-literacy users
+- **Multilingual Architecture:** Implementing i18n (internationalization) with dynamic language switching
+- **Geolocation Services:** Integrating location-based weather and soil data APIs
+
+**Secondary Learning Outcomes:**
+
+- **Progressive Web App (PWA) Principles:** Building installable, offline-capable web applications
+- **Accessibility Best Practices:** Designing for users with varying literacy and tech familiarity
+- **Data Visualization:** Presenting agricultural data through simple, visual charts and icons
+- **Government Compliance:** Understanding data privacy and security requirements for government projects
+
+---
+
+### Technology Stack
+
+**Frontend:**
+
+- **Framework:** React Native 0.73 (for Android native compilation)
+- **Language:** TypeScript 5
+- **State Management:** Zustand 5.x (lightweight, offline-friendly)
+- **Styling:** NativeWind (TailwindCSS for React Native)
+- **UI Components:** React Native Paper 5.x (Material Design for Android)
+- **Navigation:** React Navigation v6
+- **Icons:** React Native Vector Icons (Material Community Icons)
+- **Offline Storage:** AsyncStorage + WatermelonDB (for complex data)
+- **Image Handling:** React Native Image Picker + Fast Image
+- **Voice:** React Native Voice + React Native TTS (Text-to-Speech)
+- **Internationalization:** i18next + react-i18next
+- **Location:** React Native Geolocation Service
+- **Camera:** React Native Camera (for pest detection)
+
+**Backend:**
+
+- **Runtime:** Node.js v22 LTS
+- **Language:** TypeScript 5
+- **Framework:** Express.js v5
+- **Database:** MongoDB with Mongoose v9 (farmer profiles, advisory history)
+- **File Storage:** GridFS (for uploaded crop images)
+- **AI/ML:** TensorFlow Lite (on-device inference for offline disease detection)
+- **Weather API:** OpenWeatherMap API / IMD (India Meteorological Department)
+- **Soil Data:** ISRO Bhuvan API / ICAR soil health data
+
+**DevOps & Deployment:**
+
+- **Version Control:** Git + GitHub
+- **CI/CD:** GitHub Actions
+- **Backend Hosting:** AWS EC2 / DigitalOcean
+- **Database Hosting:** MongoDB Atlas
+- **APK Distribution:** Google Play Store (Alpha/Beta testing)
+
+---
+
+### MVP Scope
+
+**Phase 1: Core Advisory Features (Days 1-7)**
+**Priority: P0 (Must Have)**
+
+1. **User Onboarding & Profile**
+   - Language selection (Hindi, Punjabi, English, Tamil, Telugu, Marathi)
+   - Simple registration (phone number + OTP)
+   - Farm profile setup (location, land size, current crops)
+   - Voice-guided tutorial
+
+2. **Real-Time Crop Advisory**
+   - Location-based crop recommendations
+   - Seasonal crop calendar
+   - Best practices for selected crops
+   - Voice playback of all advisory content
+
+3. **Soil Health & Fertilizer Guidance**
+   - Soil type identification (sandy, loamy, clay)
+   - NPK fertilizer recommendations
+   - Organic farming alternatives
+   - Application timing and quantity guidance
+
+4. **Weather-Based Alerts**
+   - 7-day weather forecast
+   - Rain alerts and farming activity suggestions
+   - Temperature and humidity data
+   - Offline caching of last fetched weather
+
+**Phase 2: AI-Powered Detection (Days 8-11)**
+**Priority: P0 (Must Have)**
+
+5. **Pest & Disease Detection**
+   - Camera integration for leaf/crop photography
+   - On-device AI model for common disease detection (10-15 diseases)
+   - Treatment recommendations
+   - Offline detection capability
+   - Image gallery and history
+
+6. **Voice Support System**
+   - Complete voice navigation
+   - Text-to-speech for all content
+   - Speech-to-text for search/queries
+   - Voice command shortcuts
+
+**Phase 3: Admin & Optimization (Days 12-14)**
+**Priority: P1 (Should Have)**
+
+7. **Agricultural Officer Dashboard (Web)**
+   - View farmer registrations and activity
+   - Push localized advisories
+   - Monitor app usage analytics
+   - Manage crop disease database
+
+8. **Feedback & Continuous Improvement**
+   - In-app feedback mechanism
+   - Usage analytics (anonymous)
+   - Offline data sync management
+   - Performance optimization
+
+---
+
+### Target Users / Personas
+
+**Primary Persona: Ramesh Kumar - Small Farmer**
+
+- **Demographics:**
+  - Age: 35-50 years
+  - Location: Rural Punjab (Ludhiana district)
+  - Occupation: Small farmer (2-3 acres)
+  - Tech Savviness: Low (basic smartphone usage)
+  - Languages: Punjabi (primary), limited Hindi
+  - Education: Primary to 10th standard
+
+- **Goals & Motivations:**
+  - Increase crop yield to support family
+  - Reduce fertilizer and pesticide costs
+  - Learn modern farming techniques
+  - Get timely weather information
+  - Identify crop diseases early
+
+- **Pain Points:**
+  - Cannot read English agricultural content
+  - Poor internet connectivity in village
+  - Relies on shopkeeper advice (often biased)
+  - Loses crops to unexpected weather/pests
+  - Struggles with smartphone apps (too complex)
+
+- **User Needs:**
+  - Voice-based guidance in Punjabi
+  - Simple, icon-based navigation
+  - Works without internet
+  - Quick answers to farming questions
+  - Trustworthy, government-backed information
+
+**Secondary Persona: Lakshmi Devi - Marginal Farmer**
+
+- **Demographics:**
+  - Age: 28-45 years
+  - Location: Rural Tamil Nadu
+  - Occupation: Marginal farmer (0.5-1 acre)
+  - Tech Savviness: Low (borrowed smartphone)
+  - Languages: Tamil (primary)
+  - Education: Limited formal education
+
+- **Goals & Motivations:**
+  - Maximize income from small land
+  - Learn about government schemes
+  - Get advice on vegetable farming
+  - Avoid crop losses
+
+- **Pain Points:**
+  - Limited smartphone ownership
+  - Very low digital literacy
+  - Language barrier with most apps
+  - Cannot afford expensive inputs
+
+- **User Needs:**
+  - Extremely simple interface
+  - Audio-first experience
+  - Free access to information
+  - Support for feature phones (future)
+
+**Tertiary Persona: Anil Sharma - Agricultural Extension Officer**
+
+- **Demographics:**
+  - Age: 30-45 years
+  - Location: District agriculture office
+  - Occupation: Government agricultural officer
+  - Tech Savviness: Medium-High
+  - Languages: Hindi, Punjabi, English
+
+- **Goals & Motivations:**
+  - Reach more farmers efficiently
+  - Track advisory impact
+  - Share localized farming knowledge
+  - Improve department metrics
+
+- **Pain Points:**
+  - Cannot physically visit all farmers
+  - Lack of data on farmer needs
+  - Limited tools for mass communication
+
+- **User Needs:**
+  - Dashboard to monitor app usage
+  - Ability to push advisories to farmers
+  - Analytics on farmer engagement
+  - Easy content management
+
+---
+
+## Branding, Theming & Visual Identity
+
+### Brand Identity
+
+**Brand Name:** Krishi Mitra (कृषि मित्र)
+
+**Brand Personality:**
+- **Tone:** Trustworthy, Supportive, Simple, Government-backed, Empowering
+- **Voice:** Educational yet Conversational, Respectful, Encouraging, Authoritative but Approachable
+- **Mood:** Calm, Reliable, Optimistic, Grounded, Community-focused
+
+**Brand Values:**
+- **Accessibility** - Technology should serve everyone, regardless of literacy or language
+- **Trust** - Government-backed credibility with scientifically validated information
+- **Empowerment** - Farmers are decision-makers; we provide tools, not dictates
+- **Sustainability** - Promoting environmentally responsible farming practices
+- **Community** - Connecting farmers with knowledge and each other
+
+**Brand Story:**
+Krishi Mitra was born from recognizing that India's farmers—the backbone of our nation—deserve the same access to technology and scientific knowledge as any other profession. Built by the Government of Punjab in partnership with agricultural scientists, Krishi Mitra is not just an app; it's a friend (मित्र) that walks with farmers through every season, every challenge, and every harvest. By breaking language barriers and working offline, we ensure that no farmer is left behind in the digital agriculture revolution.
+
+---
+
+### Logo & Visual Assets
+
+**Logo Specifications:**
+- **Primary Logo:** Combination mark featuring:
+  - Icon: Stylized green leaf emerging from soil/smartphone fusion
+  - Wordmark: "Krishi Mitra" in Devanagari (कृषि मित्र) and English
+  - Government of Punjab emblem on official versions
+
+- **Logo Variations:**
+  - Full color on white background (primary)
+  - White on green background (app header)
+  - Icon-only for app launcher (512x512px)
+  - Monochrome for official documents
+
+- **Safe Space:** Minimum clear space equal to height of leaf icon
+- **Minimum Size:** 120px width for full logo, 48px for icon-only
+- **File Formats:** SVG (web/vector), PNG (raster exports), ICO (app icon)
+
+**Imagery Style:**
+- **Photography:** Authentic Indian agricultural scenes - real farmers, crops, fields; warm natural lighting; focus on hands, soil, and crops
+- **Illustrations:** Flat, friendly, iconic style with bold outlines; representing farming activities, weather, crops; culturally relevant (dhoti-kurta, sarees, turbans)
+- **Icons:** Google Material Symbols (Rounded variant) for universal recognition; supplemented with custom agriculture icons
+- **Patterns/Textures:** Subtle grain/seed patterns for backgrounds; never overwhelming; earth tones
+
+---
+
+### Color System (OKLCH)
+
+**Understanding OKLCH:**
+OKLCH is a perceptual color space that provides:
+- **L (Lightness):** 0-100% (0 = black, 100 = white)
+- **C (Chroma):** 0-0.4 (0 = grayscale, higher = more vibrant)
+- **H (Hue):** 0-360 degrees (color wheel position)
+
+**Color Palette Definition:**
+
+#### Primary Brand Color - Krishi Green
+```css
+--color-primary: oklch(55% 0.18 145);
+--color-primary-content: oklch(98% 0.01 145);
+```
+
+**Visual:** Rich, fertile green representing healthy crops and growth
+- **Usage:** Primary CTAs, navigation highlights, app header, success states, crop health indicators
+- **Meaning:** Growth, fertility, agriculture, hope, prosperity, government trust
+- **Accessibility:** Contrast ratio with base-100: 7.2:1 (AAA)
+
+**Color Variations:**
+- Lighter: `oklch(70% 0.15 145)` - Hover states, light backgrounds, success messages
+- Darker: `oklch(40% 0.20 145)` - Active states, pressed buttons, emphasis
+
+---
+
+#### Secondary Brand Color - Earth Brown
+```css
+--color-secondary: oklch(50% 0.08 60);
+--color-secondary-content: oklch(98% 0.01 60);
+```
+
+**Visual:** Warm brown representing soil and earthiness
+- **Usage:** Secondary actions, soil health sections, grounding elements, farmer profile icons
+- **Meaning:** Soil, foundation, stability, tradition, connection to land
+- **Accessibility:** Contrast ratio with base-100: 6.8:1 (AAA)
+
+---
+
+#### Accent Color - Sunshine Yellow
+```css
+--color-accent: oklch(75% 0.16 95);
+--color-accent-content: oklch(30% 0.05 95);
+```
+
+**Visual:** Warm, optimistic yellow representing sunlight and harvest
+- **Usage:** Weather highlights, important alerts (non-urgent), achievements, positive reinforcement, harvest readiness indicators
+- **Meaning:** Sunlight, energy, warmth, prosperity, optimism
+- **Accessibility:** Contrast ratio with base-100: 4.6:1 (AA)
+
+---
+
+#### Neutral Colors - Government Gray
+```css
+--color-neutral: oklch(40% 0.02 240);
+--color-neutral-content: oklch(98% 0.01 240);
+```
+
+**Visual:** Professional, authoritative gray for text and UI elements
+- **Usage:** Body text, borders, disabled states, secondary information, government credential badges
+- **Meaning:** Professionalism, authority, neutrality, government credibility
+
+---
+
+#### Base Colors (Backgrounds & Surfaces)
+```css
+--color-base-100: oklch(98% 0.005 145); /* Main background - very light green tint */
+--color-base-200: oklch(95% 0.008 145); /* Cards, panels - slightly darker */
+--color-base-300: oklch(88% 0.012 145); /* Dividers, borders - subtle green */
+--color-base-content: oklch(28% 0.015 145); /* Primary text - dark green-gray */
+```
+
+**Light Theme Design Philosophy:**
+The base colors have a subtle green tint to maintain connection with the agricultural theme while remaining highly readable and professional. The off-white backgrounds reduce eye strain in bright outdoor conditions.
+
+---
+
+#### Semantic Colors
+
+**Info - Sky Blue:**
+```css
+--color-info: oklch(65% 0.15 240);
+--color-info-content: oklch(98% 0.01 240);
+```
+- **Usage:** Weather information, water-related tips, informational messages, general tips
+
+**Success - Fresh Green:**
+```css
+--color-success: oklch(60% 0.20 150);
+--color-success-content: oklch(98% 0.01 150);
+```
+- **Usage:** Healthy crop indicators, successful actions, good weather conditions, optimal growth
+
+**Warning - Alert Orange:**
+```css
+--color-warning: oklch(70% 0.18 70);
+--color-warning-content: oklch(25% 0.05 70);
+```
+- **Usage:** Weather warnings, moderate pest alerts, attention-needed indicators, input reminders
+
+**Error - Critical Red:**
+```css
+--color-error: oklch(60% 0.22 25);
+--color-error-content: oklch(98% 0.01 25);
+```
+- **Usage:** Disease alerts, severe weather warnings, critical errors, urgent actions needed
+
+---
+
+### Color Usage Guidelines
+
+**Do's:**
+- ✅ Use primary green for all main actions (advisory, recommendations, submit)
+- ✅ Use earth brown for grounding elements and soil-related content
+- ✅ Use semantic colors consistently (red = danger/disease, green = healthy, yellow = caution)
+- ✅ Ensure large touch targets with high contrast for outdoor visibility
+- ✅ Test colors under bright sunlight (farmers use phones outdoors)
+- ✅ Use icons with colors for low-literacy comprehension
+
+**Don'ts:**
+- ❌ Don't use more than 2-3 colors per screen (avoid overwhelming users)
+- ❌ Don't rely on color alone - always pair with icons and text
+- ❌ Don't use pure white backgrounds (harsh in sunlight)
+- ❌ Don't use low-contrast combinations
+- ❌ Don't use colors that conflict with cultural meanings (e.g., avoid black for positive states)
+
+---
+
+### Color Accessibility Matrix
+
+| Text Color | Background | Contrast Ratio | WCAG Level | Use Case |
+|------------|------------|----------------|------------|----------|
+| base-content | base-100 | 12.5:1 | AAA | Body text, descriptions |
+| primary-content | primary | 14.2:1 | AAA | Primary buttons, headers |
+| secondary-content | secondary | 13.1:1 | AAA | Secondary buttons |
+| error-content | error | 11.8:1 | AAA | Disease alerts, errors |
+| warning-content | warning | 9.2:1 | AAA | Weather warnings |
+| success-content | success | 12.5:1 | AAA | Healthy crop status |
+
+**Critical Design Note:**
+Given the primary users' context (outdoor usage, varying ages, potential vision issues), all interactive elements maintain **AAA-level contrast** (7:1 minimum for normal text, 4.5:1 for large text 18pt+).
+
+**Testing Tools:**
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- Outdoor visibility testing with actual farmers
+- Device testing under direct sunlight
+
+---
+
+### Dark Mode Considerations
+
+**Status:** NOT IMPLEMENTED for MVP
+
+**Rationale:**
+- Farmers primarily use phones during daytime (field work)
+- Battery conservation priority (AMOLED dark mode) conflicts with outdoor visibility needs
+- Focus on single, highly optimized light theme for consistency
+- Dark mode adds complexity for low-literacy users
+
+**Future Consideration (Phase 3):**
+- Evening/night mode for indoor planning sessions
+- Battery-saving mode for long field days
+
+---
+
+### Visual Hierarchy & Emphasis
+
+**Color-Based Hierarchy:**
+
+1. **Primary Actions:** Primary green (highest visual weight)
+   - "Get Advisory", "Scan Crop", "Check Weather"
+
+2. **Secondary Actions:** Secondary brown or neutral outline
+   - "View History", "Update Profile", "Settings"
+
+3. **Tertiary Actions:** Ghost or subtle styles
+   - "Cancel", "Skip", "Back"
+
+4. **Text Hierarchy:**
+   - base-content (primary text - instructions, titles)
+   - base-content/80 (secondary text - descriptions)
+   - base-content/60 (tertiary text - metadata, timestamps)
+
+**Example Color Application:**
+```tsx
+{/* Primary CTA - Most important action */}
+<Button className="bg-primary text-primary-content">
+  Get Crop Advisory
+</Button>
+
+{/* Secondary action - Supporting action */}
+<Button className="bg-secondary text-secondary-content">
+  View Past Recommendations
+</Button>
+
+{/* Tertiary action - Less emphasis */}
+<Button className="bg-transparent border-2 border-neutral text-neutral">
+  Cancel
+</Button>
+
+{/* Status indicators with semantic colors */}
+<StatusBadge className="bg-success text-success-content">
+  Healthy Crop
+</StatusBadge>
+
+<StatusBadge className="bg-error text-error-content">
+  Disease Detected
+</StatusBadge>
+```
+
+---
+
+## UI/UX Design System
+
+### Design Principles
+
+- **Simplicity First:** Every screen has ONE primary action. No feature bloat. Large buttons, minimal text.
+
+- **Voice & Visual Dual Mode:** Every text element has voice playback. Every voice command has visual confirmation.
+
+- **Offline by Default:** App assumes poor connectivity. All core features work offline. Sync happens in background.
+
+- **Icon-Driven Navigation:** Universal icons (farmer, weather, crop, chat) with text labels. No abstract symbols.
+
+- **Progressive Disclosure:** Show only what's needed now. Advanced features hidden until user is comfortable.
+
+- **Forgiving & Reversible:** Easy undo for all actions. No data loss. Confirmation for destructive actions.
+
+- **Cultural Sensitivity:** Imagery, colors, and language reflect Indian agricultural context. Respect for farmer knowledge.
+
+---
+
+### React Native Paper Theme Configuration
+
+**Complete Theme Definition (React Native):**
+
+```tsx
+import { MD3LightTheme, configureFonts } from 'react-native-paper';
+import type { MD3Theme } from 'react-native-paper';
+
+const fontConfig = {
+  displayLarge: {
+    fontFamily: 'NotoSans-Bold',
+    fontSize: 57,
+    lineHeight: 64,
+  },
+  // ... other font configurations
+};
+
+export const theme: MD3Theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: 'rgb(56, 142, 60)', // Krishi Green - oklch(55% 0.18 145)
+    onPrimary: 'rgb(255, 255, 255)',
+    primaryContainer: 'rgb(183, 235, 185)',
+    onPrimaryContainer: 'rgb(0, 57, 10)',
+
+    secondary: 'rgb(120, 85, 45)', // Earth Brown - oklch(50% 0.08 60)
+    onSecondary: 'rgb(255, 255, 255)',
+    secondaryContainer: 'rgb(255, 221, 184)',
+    onSecondaryContainer: 'rgb(42, 21, 0)',
+
+    tertiary: 'rgb(200, 165, 0)', // Sunshine Yellow - oklch(75% 0.16 95)
+    onTertiary: 'rgb(60, 45, 0)',
+    tertiaryContainer: 'rgb(255, 240, 180)',
+    onTertiaryContainer: 'rgb(50, 38, 0)',
+
+    error: 'rgb(186, 26, 26)', // Critical Red
+    onError: 'rgb(255, 255, 255)',
+    errorContainer: 'rgb(255, 218, 214)',
+    onErrorContainer: 'rgb(65, 0, 2)',
+
+    background: 'rgb(250, 253, 250)', // Subtle green tint
+    onBackground: 'rgb(26, 28, 25)',
+
+    surface: 'rgb(250, 253, 250)',
+    onSurface: 'rgb(26, 28, 25)',
+    surfaceVariant: 'rgb(222, 229, 216)',
+    onSurfaceVariant: 'rgb(66, 73, 64)',
+
+    outline: 'rgb(114, 121, 111)',
+    outlineVariant: 'rgb(194, 201, 189)',
+
+    // Custom semantic colors
+    success: 'rgb(46, 125, 50)',
+    onSuccess: 'rgb(255, 255, 255)',
+    warning: 'rgb(237, 108, 2)',
+    onWarning: 'rgb(255, 255, 255)',
+    info: 'rgb(2, 136, 209)',
+    onInfo: 'rgb(255, 255, 255)',
+  },
+  fonts: configureFonts({ config: fontConfig }),
+  roundness: 12, // Rounded corners for friendly feel
+};
+```
+
+**NativeWind/Tailwind Integration:**
+
+```tsx
+// tailwind.config.js for NativeWind
+module.exports = {
+  content: ['./App.{js,jsx,ts,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: 'rgb(56, 142, 60)',
+        secondary: 'rgb(120, 85, 45)',
+        accent: 'rgb(200, 165, 0)',
+        // ... other colors
+      },
+      fontFamily: {
+        sans: ['NotoSans-Regular'],
+        bold: ['NotoSans-Bold'],
+      },
+    },
+  },
+};
+```
+
+---
+
+### Typography
+
+**Google Fonts for React Native:**
+
+**Font Integration:**
+```bash
+# Install fonts
+npx react-native-asset
+```
+
+**fonts.json:**
+```json
+{
+  "project": {
+    "android": {
+      "assets": ["./assets/fonts"]
+    }
+  }
+}
+```
+
+**Font Files Required:**
+- Noto Sans (Latin + Devanagari + Tamil + Telugu)
+- Noto Sans Punjabi (Gurmukhi script)
+- Font weights: 400, 500, 600, 700
+
+**Font System:**
+
+**Primary Font (UI & Body):**
+- **Font Family:** Noto Sans
+- **Weights:** 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
+- **Usage:** All UI elements, body text, buttons, labels
+- **Characteristics:** Highly readable, extensive Unicode support, optimized for Indian languages
+- **Why:** Noto Sans supports Devanagari, Gurmukhi, Tamil, Telugu with consistent styling
+
+**Typography Scale (Mobile-Optimized):**
+
+```tsx
+/* Heading Styles */
+H1 (Screen Title): 28px / 36px - font-weight: 700 - Used for: Main screen headings
+H2 (Section): 24px / 32px - font-weight: 600 - Used for: Section titles
+H3 (Card Title): 20px / 28px - font-weight: 600 - Used for: Card headings
+H4 (Subtitle): 18px / 26px - font-weight: 500 - Used for: Subtitles
+
+/* Body Styles */
+Body Large: 18px / 26px - font-weight: 400 - Used for: Primary instructions
+Body Regular: 16px / 24px - font-weight: 400 - Used for: Standard text
+Body Small: 14px / 20px - font-weight: 400 - Used for: Supporting text
+
+/* UI Elements */
+Button Text: 16px / 24px - font-weight: 600 - Used for: Button labels
+Label: 14px / 20px - font-weight: 500 - Used for: Form labels
+Caption: 12px / 16px - font-weight: 400 - Used for: Timestamps, metadata
+```
+
+**Multilingual Typography Considerations:**
+
+- **Devanagari (Hindi):** Slightly larger line-height (1.6x) for diacritics
+- **Gurmukhi (Punjabi):** Adequate spacing for top-heavy glyphs
+- **Tamil/Telugu:** Extended character set support
+- **All Scripts:** Minimum 16px for body text (outdoor readability)
+
+**Responsive Typography:**
+
+- **Small Phones (<360px):** -2px from base sizes
+- **Standard (360px-400px):** Base sizes as defined
+- **Large Phones (>400px):** +2px for headings only
+
+---
+
+### Icons - Material Community Icons
+
+**Integration:**
+
+```bash
+npm install react-native-vector-icons
+npx react-native link react-native-vector-icons
+```
+
+**Icon Library:** Material Community Icons (10,000+ icons, agriculture-specific icons available)
+
+**Icon Usage:**
+
+| Category | Icon Names | Context |
+|----------|-----------|---------|
+| **Navigation** | home, menu, arrow-left, arrow-right, chevron-down, chevron-up | Bottom nav, screen transitions |
+| **Agriculture** | sprout, flower, leaf, weather-sunny, weather-rainy, thermometer, water | Crop types, weather, irrigation |
+| **Actions** | camera, microphone, volume-high, refresh, check, close, plus | Primary user actions |
+| **Advisory** | book-open-page-variant, lightbulb, information, alert-circle | Tips, recommendations, info |
+| **User** | account, account-group, logout, settings | Profile, community |
+| **Pest/Disease** | bug, virus, shield-check, medical-bag | Disease detection, treatment |
+| **Status** | check-circle, alert, weather-lightning, star | Crop health, alerts, ratings |
+
+**Icon Sizes:**
+
+- Small: 20px (inline with text, tags)
+- Medium: 28px (list items, cards)
+- Large: 40px (primary actions, feature cards)
+- XL: 64px (onboarding, empty states)
+
+**Icon Component:**
+
+```tsx
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+interface IconProps {
+  name: string;
+  size?: number;
+  color?: string;
+  onPress?: () => void;
+}
+
+const CustomIcon: FC<IconProps> = ({
+  name,
+  size = 24,
+  color = theme.colors.onSurface,
+  onPress
+}) => {
+  return (
+    <Icon
+      name={name}
+      size={size}
+      color={color}
+      onPress={onPress}
+      accessible={true}
+      accessibilityRole="imagebutton"
+    />
+  );
+};
+```
+
+**Critical Icons for MVP:**
+
+- **home** - Dashboard
+- **sprout** - My Crops
+- **weather-partly-cloudy** - Weather
+- **camera** - Disease Scanner
+- **book-open-page-variant** - Advisory
+- **account** - Profile
+- **microphone** - Voice Input
+- **volume-high** - Play Audio
+- **map-marker** - Location
+- **alert-circle** - Alerts
+
+---
+
+### Responsive Design (Mobile-First)
+
+**Device Support:**
+
+```tsx
+const deviceSizes = {
+  small: 320,   // Small budget phones (Galaxy J2, Redmi 4A)
+  medium: 360,  // Standard phones (most Android devices)
+  large: 400,   // Larger phones (OnePlus, Samsung flagships)
+  tablet: 600,  // Small tablets (future consideration)
+};
+```
+
+**Layout Patterns:**
+
+**All Screens (Mobile-Only MVP):**
+
+- Single-column layout (no multi-column for simplicity)
+- Full-width cards with 16px horizontal padding
+- Large touch targets (minimum 56px height for buttons)
+- Bottom navigation bar (always visible)
+- Sticky headers for context retention
+
+**Component Sizing:**
+
+```tsx
+/* Primary Buttons */
+<Button style={{ height: 56, width: '100%' }}>
+  Large, Easy-to-Tap
+</Button>
+
+/* Cards */
+<Card style={{ marginHorizontal: 16, marginVertical: 8, borderRadius: 12 }}>
+  Content with generous padding
+</Card>
+
+/* Bottom Navigation */
+<NavigationBar style={{ height: 72 }}>
+  Icons + Labels (always visible)
+</NavigationBar>
+```
+
+**Screen Adaptations:**
+
+**Small Phones (320px-359px):**
+- Slightly reduced font sizes (-2px)
+- Single-column grid (1 card per row)
+- Compact spacing (12px instead of 16px)
+
+**Medium Phones (360px-399px):**
+- Standard sizing (base design)
+- Comfortable spacing (16px)
+- 2-column grid for weather cards only
+
+**Large Phones (400px+):**
+- Enhanced spacing (20px)
+- Slightly larger headings (+2px)
+- 2-column layout for advisory cards
+
+---
+
+### Accessibility Requirements
+
+**WCAG 2.1 AA Compliance + Rural Context:**
+
+**Perceivable:**
+
+- [x] All images have descriptive alt text (in current language)
+- [x] Color contrast ratio ≥ 7:1 for all text (AAA level for outdoor visibility)
+- [x] Icons ALWAYS paired with text labels
+- [x] Weather/status information uses icons + text + color
+- [x] Text size minimum 16px (outdoor readability)
+- [x] High contrast mode available
+
+**Operable:**
+
+- [x] All functionality available via touch (no
