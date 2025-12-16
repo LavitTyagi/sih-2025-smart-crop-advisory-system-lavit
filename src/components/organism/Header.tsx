@@ -2,17 +2,9 @@ export const Header = () => {
     return (
         <>
             <header>
-                <h1>🌿 Smart Crop Advisory System</h1>
-
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#advisory">Crop Advisory</a></li>
-                        <li><a href="#weather">Weather Forecast</a></li>
-                        <li><a href="#soil">Soil Health</a></li>
-                        <li><a href="#login">Login</a></li>
-                    </ul>
-                </nav>
+                <div className="navbar bg-base-100 shadow-sm">
+                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                </div>
             </header>
         </>
     );
